@@ -18,20 +18,16 @@ async function checkWeather(city) {
         document.querySelector(".humidity").textContent = data.main.humidity + "%";
         document.querySelector(".wind").textContent = data.wind.speed + " km/h";
 
-        if (data.weather[0].main === "clouds") {
-            weatherIcon.src = "/images/clouds.png"
-        } else if (data.weather[0].main === "clear") {
-            weatherIcon.src = "/images/clear.png"
-        } else if (data.weather[0].main === "drizzel") {
-            weatherIcon.src = "/images/drizzel.png"
-        } else if (data.weather[0].main === "mist") {
-            weatherIcon.src = "/images/mist.png"
-        } else if (data.weather[0].main === "snow") {
-            weatherIcon.src = "/images/snow.png"
-        } else if (data.weather[0].main === "rain") {
-            weatherIcon.src = "/images/rain.png"
+        // Update weather icon dynamically
+        const weatherMain = data.weather[0].main.toLowerCase();
+        const validWeatherTypes = ["clouds", "clear", "drizzle", "mist", "snow", "rain"];
+        
+        if (validWeatherTypes.includes(weatherMain)) {
+            weatherIcon.src = `/images/${weatherMain}.png`;
+        } else {
+            // Default icon if the weather type is not in our list
+            weatherIcon.src = "/images/default.png";
         }
-
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -59,5 +55,3 @@ searchBox.addEventListener("keyup", (event) => {
         }
     }
 });
-
-
