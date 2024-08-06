@@ -96,3 +96,17 @@ body {
     font-size: 28px;
     margin-top: -5px;
 }
+
+.not-found-msg {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 25px;
+    color: red;
+    font-size: 19px;
+    display: none;
+}
+
+.weather {
+    display: none;
+
+}
